@@ -7,21 +7,79 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
+<style>
+/* Hamburger & nav */
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
 
+.nav-links li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: currentColor;
+  border-radius: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    flex-direction: column;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+</style>
 <body>
-  <header id="header">
-    <div class="container flex">
-      <div class="logo">MySite</div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-      </nav>
-      <button id="mode-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+ <header id="header">
+  <div class="container flex">
+    <div class="logo">MySite</div>
+
+    <!-- Navigation -->
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <button id="mode-toggle" aria-label="Toggle Dark/Light Mode">🌙</button>
+
+     <!-- Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-  </header>
+  </div>
+</header>
 
   <section class="hero-container">
     <video class="hero-bg-video" autoplay muted loop>
@@ -106,6 +164,16 @@
       </div>
     </div>
   </footer>
+
+  <!-- script -->
+   <script>
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+</script>
 
   <script src="script.js"></script>
 </body>
